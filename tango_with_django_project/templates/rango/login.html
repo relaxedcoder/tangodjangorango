@@ -1,0 +1,15 @@
+{% extends "rango/base.html" %} {% load staticfiles %} {% block title_block %}
+Rango-Login {% endblock %} {% block body_block %}
+<h1>Login To Rango</h1>
+<img src="{% static 'images/adity.jpg' %}" />
+<form action="." method="POST" id="login_form">
+  {% csrf_token %}
+  <strong> {{ errors }}</strong>
+  <br />
+  Username: <input type="text" name="username" value="" size="50" />
+  <br />
+  Password: <input type="password" name="password" value="" size="50" />
+  <br />
+  <input type="submit" value="submit" />
+</form>
+{% endblock %}

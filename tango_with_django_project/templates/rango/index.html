@@ -1,0 +1,44 @@
+{% extends "rango/base.html" %}
+{% block title_block %}Home{% endblock %}
+{% block body_block %}
+<h1>Rango says...</h1>
+<div>
+  {% if user.is_authenticated %}
+  <a href="/rango/logout"><button value="LOGOUT">LOGOUT</button></a>
+  {% else %}
+  <a href="/rango/register">Please Register</a><br />
+  <strong><a href="/rango/login">Login</a></strong><br />
+  {% endif %}
+  hey there partner! <br />
+  <strong>Most Liked Categories</strong><br />
+  <div>
+    {% if categories %}
+    <ul>
+      {% for c in categories %}
+      <li>
+        <a href="{%url 'rango:category' c.slug %} " target="_blank">{{ c.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <strong> There Are No Category present </strong>
+    {% endif %}
+  </div>
+  <strong>Most Viewed Pages</strong>
+  <br />
+  <div>
+    {% if pages_view %}
+    <ul>
+      {% for c in pages_view %}
+      <li>
+        <a href="{{ c.url }} " target="_blank">{{ c.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <strong> There Are No Category present </strong>
+    {% endif %}
+  </div>
+  <div><a href="{% url 'rango:add_category' %}"> Add Category</a></div>
+</div>
+{% endblock %}
